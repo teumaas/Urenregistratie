@@ -31,6 +31,5 @@ namespace CCO_Urenregistratie.Models
         }
         public System.Data.Entity.DbSet<CCO_Urenregistratie.Models.Tasks> Tasks { get; set; }
         public System.Data.Entity.DbSet<CCO_Urenregistratie.Models.Project> Projects { get; set; }
-
     }
 }

@@ -19,11 +19,17 @@ namespace CCO_Urenregistratie.Models
         [Key]
         public int Id { get; set; }
         public string UserId { get; private set; }
+        public string Name { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public string Color { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
+
+        public void SetUserId(string id)
+        {
+            UserId = id;
+        }
     }
 }

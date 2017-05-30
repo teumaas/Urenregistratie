@@ -28,5 +28,10 @@ namespace CCO_Urenregistratie.Models
         public virtual Project Project { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
+
+        public void SetUserId(string id)
+        {
+            UserId = id;
+        }
     }
 }

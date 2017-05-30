@@ -7,6 +7,7 @@ using System.Web.Security;
 
 namespace CCO_Urenregistratie.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

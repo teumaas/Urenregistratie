@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using CCO_Urenregistratie.Models;
 
 namespace CCO_Urenregistratie.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -39,8 +41,8 @@ namespace CCO_Urenregistratie.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "UserId");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -53,17 +55,19 @@ namespace CCO_Urenregistratie.Controllers
         {
             if (ModelState.IsValid)
             {
+                tasks.SetUserId(HttpContext.User.Identity.GetUserId());
                 db.Tasks.Add(tasks);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "UserId", tasks.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", tasks.UserId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", tasks.ProjectId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", tasks.UserId);
             return View(tasks);
         }
 
         // GET: Tasks/Edit/5
+        [AuthorizeOwner]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,8 +79,8 @@ namespace CCO_Urenregistratie.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "UserId", tasks.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", tasks.UserId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", tasks.ProjectId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", tasks.UserId);
             return View(tasks);
         }
 
@@ -93,12 +97,13 @@ namespace CCO_Urenregistratie.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "UserId", tasks.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", tasks.UserId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", tasks.ProjectId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", tasks.UserId);
             return View(tasks);
         }
 
         // GET: Tasks/Delete/5
+        [AuthorizeOwner]
         public ActionResult Delete(int? id)
         {
             if (id == null)

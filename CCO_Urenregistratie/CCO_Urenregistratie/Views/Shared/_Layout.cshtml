@@ -9,6 +9,8 @@
 
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    { 
     <nav class="navbar navbar-fixed-top navbar-cco animated fadeIn" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -20,7 +22,7 @@
             </div>
         </div>
     </nav>
-
+    }
     <div class="container">
         @RenderBody()
     </div>

@@ -1,20 +1,18 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using CCO_Urenregistratie.Helpers
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav">
         <li>
-            @Html.ActionLink("Welkom, " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.IconActionLink("fa fa-user", "Welkom, " + User.Identity.GetUserName(), "Index", "Manage", null, htmlAttributes: new { title = "Manage" })
         </li>
 
         <li>
-            <a class="fa fa-user">Welkom, John Doe</a>
-        </li>
-        <li>
-            <a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-sign-out"></span> Uitloggen</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Uitloggen</a>
         </li>
     </ul>
     }

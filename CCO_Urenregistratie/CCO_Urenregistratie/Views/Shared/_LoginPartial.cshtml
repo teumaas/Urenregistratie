@@ -8,9 +8,8 @@
 
     <ul class="nav navbar-nav">
         <li>
-            @Html.IconActionLink("fa fa-user", "Welkom, " + User.Identity.GetUserName(), "Index", "Manage", null, htmlAttributes: new { title = "Manage" })
+            <a><i class="fa fa-user"></i> Welkom, @User.Identity.GetUserId().</a>
         </li>
-
         <li>
             <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Uitloggen</a>
         </li>

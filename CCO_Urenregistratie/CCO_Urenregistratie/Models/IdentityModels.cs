@@ -17,6 +17,9 @@ namespace CCO_Urenregistratie.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public virtual ICollection<Tasks> Tasks { get; private set; }
         public virtual ICollection<Project> Projects { get; private set; }
     }

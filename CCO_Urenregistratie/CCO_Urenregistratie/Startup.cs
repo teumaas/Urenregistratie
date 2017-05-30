@@ -35,6 +35,8 @@ namespace CCO_Urenregistratie
 
                 var user = new ApplicationUser();
                 user.UserName = "admin";
+                user.FirstName = "Jan";
+                user.LastName = "de Admin";
                 user.Email = "admin@gmail.com";
 
                 string userPWD = "admin123";

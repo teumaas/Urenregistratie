@@ -272,7 +272,7 @@ namespace CCO_Urenregistratie.Controllers
         }
 
         //
-        // POST: /Account/ExternalLogin
+        // POST: /Account/ExternalLogin 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

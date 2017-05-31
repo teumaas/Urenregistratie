@@ -38,6 +38,8 @@ namespace CCO_Urenregistratie
             bundles.Add(new ScriptBundle("~/bundles/sweetalert2").Include(
                       "~/Scripts/toastr.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                       "~/Scripts/toastr.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",

@@ -6,10 +6,16 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/icheck")
+    @Scripts.Render("~/bundles/chart")
+    @Scripts.Render("~/bundles/selector")
+    @Scripts.Render("~/bundles/sweetalert2")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    @if (User.Identity.IsAuthenticated)
+    @if (Request.IsAuthenticated)
     { 
     <nav class="navbar navbar-fixed-top navbar-cco animated fadeIn" role="navigation">
         <div class="container-fluid">
@@ -33,13 +39,7 @@
         </div>
     </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/icheck")
-    @Scripts.Render("~/bundles/chart")
-    @Scripts.Render("~/bundles/selector")
-    @Scripts.Render("~/bundles/sweetalert2")
-    @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

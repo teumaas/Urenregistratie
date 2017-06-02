@@ -20,6 +20,8 @@ namespace CCO_Urenregistratie.Controllers
         public ActionResult Index()
         {
             var tasks = db.Tasks.Include(t => t.Project).Include(t => t.User);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View(tasks.ToList());
         }
 

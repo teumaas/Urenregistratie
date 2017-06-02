@@ -47,10 +47,15 @@
             @Html.DisplayFor(modelItem => item.Enddate)
         </td>
         <td>
+            <button type="submit" id="edit" name="edit" class="btn btn-cco btn-margin">
+                <span class="fa fa-sign-in"></span>
+                edit
+            </button>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
+        @PartialExtensions.Partial(Html, "Edit",item)
     </tr>
 }
 

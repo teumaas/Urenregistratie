@@ -48,13 +48,14 @@ namespace CCO_Urenregistratie.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "UserName")]
+        [Required(ErrorMessage="Vul uw gebruiksnaam in.")]
+        [Display(Name = "Gebruikersnaam")]
+        
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Vul uw wachtwoord in.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]

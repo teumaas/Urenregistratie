@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
+using CCO_Urenregistratie.Models;
 
 namespace CCO_Urenregistratie.Helpers
 {
@@ -24,6 +25,14 @@ namespace CCO_Urenregistratie.Helpers
             builder.MergeAttribute("class", icon);
             var link = helper.ActionLink("[replaceme] " + text, actionName, controllerName, routeValues, htmlAttributes).ToHtmlString();
             return new MvcHtmlString(link.Replace("[replaceme]", builder.ToString()));
+        }
+
+        public static string GetUserName(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationUser user = db.Users.Find(id);
+
+            return user.FirstName + " " + user.LastName;
         }
     }
 }

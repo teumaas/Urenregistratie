@@ -1,5 +1,6 @@
 ﻿@using CCO_Urenregistratie.Helpers
 @using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -8,7 +9,7 @@
 
     <ul class="nav navbar-nav">
         <li>
-            <a><i class="fa fa-user"></i> Welkom, @User.Identity.GetUserId().</a>
+            <a><i class="fa fa-user"></i> Welkom, @HtmlExtensions.GetUserName(User.Identity.GetUserId())</a>
         </li>
         <li>
             <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Uitloggen</a>

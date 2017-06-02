@@ -22,6 +22,7 @@ namespace CCO_Urenregistratie
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/bootstrap.tooltip.js",
+                      "~/Scripts/bootstrap-colorpicker.min.js",
                       "~/Scripts/bootstrap-datepicker.min.js",
                       "~/Scripts/respond.js"));
 
@@ -34,6 +35,9 @@ namespace CCO_Urenregistratie
 
             bundles.Add(new ScriptBundle("~/bundles/selector").Include(
                       "~/Scripts/selector.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/menuchef").Include(
+                      "~/Scripts/MenuChef.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/sweetalert2").Include(
                       "~/Scripts/toastr.min.js"));
@@ -49,6 +53,7 @@ namespace CCO_Urenregistratie
                       "~/Content/bootstrap-datepicker3.standalone.min.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/toastr.min.css",
+                      "~/Content/bootstrap-colorpicker.min.js",
                       "~/Content/main.css"));
         }
     }

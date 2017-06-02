@@ -31,6 +31,10 @@ body {
   background: rgba(255, 255, 255, 1) url(../Images/Icons/CCO.svg);
 }
 
+.MenuChef-close, .MenuChefOpen{
+    display: none !important;
+}
+
 .logo:focus, .logo:hover {
   display: block !important;
   text-indent: -9999px !important;

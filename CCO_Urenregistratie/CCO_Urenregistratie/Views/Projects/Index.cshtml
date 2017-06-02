@@ -1,45 +1,60 @@
-﻿@model IEnumerable<CCO_Urenregistratie.Models.Project>
+﻿@using CCO_Urenregistratie.Helpers
+@model IEnumerable<CCO_Urenregistratie.Models.Project>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-sm-24">
+        <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
+            <div class="panel panel-cco">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Project toevoegen</h3>
+                </div>
+                <div class="panel-body">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+                    <form id="div1" method="post">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <div class="input-group form-search">
+                                    <input class="form-control search-query form-cco" type="text" placeholder="Project naam">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-cco" type="submit" data-type="last"><span class="fa fa-plus" /></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
+            <div class="panel panel-cco">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Projecten</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            @Html.IconActionLink("fa fa-edit", "", "Edit", "Projects", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-cco" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

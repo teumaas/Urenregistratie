@@ -1,48 +1,22 @@
 ﻿@model CCO_Urenregistratie.Models.Project
 
-@{
-    ViewBag.Title = "Delete";
-}
+<div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="editProject">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="panel panel-cco">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Verwijderen<span class="fa fa-close pull-right" data-dismiss="modal" aria-hidden="true" /></h2>
+                </div>
+                <div class="panel-body">
 
-<h2>Delete</h2>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-cco fa fa-floppy-o" />
+                    }
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

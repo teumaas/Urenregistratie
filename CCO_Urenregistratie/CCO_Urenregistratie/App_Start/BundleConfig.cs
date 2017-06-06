@@ -45,6 +45,9 @@ namespace CCO_Urenregistratie
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                        "~/Scripts/toastr.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/easytimer").Include(
+                       "~/Scripts/easytimer.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/icheck/all.css",

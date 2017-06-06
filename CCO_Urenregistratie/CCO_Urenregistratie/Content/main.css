@@ -23,6 +23,10 @@ body {
    padding-top: 100px;
 }
 
+.values {
+    font-size: 18px;
+    margin-top: 6px;
+}
 
 .logo {
   display: block;

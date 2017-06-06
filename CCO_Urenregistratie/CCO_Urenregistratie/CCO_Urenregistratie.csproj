@@ -236,6 +236,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.tooltip.js" />
     <Content Include="Scripts\chart.bundle.min.js" />
+    <Content Include="Scripts\easytimer.min.js" />
     <Content Include="Scripts\icheck.config.min.js" />
     <Content Include="Scripts\icheck.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

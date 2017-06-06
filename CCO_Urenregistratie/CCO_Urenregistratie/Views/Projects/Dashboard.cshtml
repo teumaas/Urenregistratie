@@ -3,5 +3,90 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+<div class="row">
+    <div class="col-sm-24">
+        <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
+            <div class="panel panel-cco">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Dashboard - Statistieken</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-6">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                Project 1:
+                                <span class="badge" style="background-color: #FF6384; border-color: #FF6384;">2 uur</span>
+                            </li>
+                            <li class="list-group-item">
+                                Project 2:
+                                <span class="badge" style="background-color: #36A2EB; border-color: #36A2EB;">10 uur</span>
+                            </li>
+                            <li class="list-group-item">
+                                Project 3:
+                                <span class="badge" style="background-color: #FFCE56; border-color: #FFCE56;">3 uur</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas id="myChart" width="800" height="450"></canvas>
+                    </div>
 
+                    <script>
+										var data = {
+										  labels: [
+											"Red",
+											"Blue",
+											"Yellow"
+										  ],
+										  datasets: [
+											{
+											  data: [2, 10, 3],
+											  backgroundColor: [
+												"#FF6384",
+												"#36A2EB",
+												"#FFCE56"
+											  ],
+											  hoverBackgroundColor: [
+												"#FF6384",
+												"#36A2EB",
+												"#FFCE56"
+											  ]
+											}]
+										};
+
+										Chart.pluginService.register({
+										  beforeDraw: function(chart) {
+											var width = chart.chart.width,
+												height = chart.chart.height,
+												ctx = chart.chart.ctx;
+
+											ctx.restore();
+											var fontSize = (height / 114).toFixed(2);
+											ctx.font = fontSize + "em sans-serif";
+											ctx.textBaseline = "middle";
+
+											var text = "15 uur",
+												textX = Math.round((width - ctx.measureText(text).width) / 2),
+												textY = height / 2;
+
+											ctx.fillText(text, textX, textY);
+											ctx.save();
+										  }
+										});
+
+										var chart = new Chart(document.getElementById('myChart'), {
+										  type: 'doughnut',
+										  data: data,
+										  options: {
+											responsive: true,
+											legend: {
+											  display: false
+											}
+										  }
+										});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

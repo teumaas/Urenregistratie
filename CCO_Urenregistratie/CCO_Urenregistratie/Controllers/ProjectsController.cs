@@ -125,7 +125,13 @@ namespace CCO_Urenregistratie.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Dashboard()
+        {
+            ViewBag.Projects = db.Projects;
+            ViewBag.Users = db.Users;
+            return View();
 
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -18,7 +18,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Key]
         public int Id { get; set; }
-        public string UserId { get; private set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

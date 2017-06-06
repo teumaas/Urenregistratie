@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="info-cco input-group-addon"><i class="fa fa-users"></i></span>
-                                @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "caption selecter_1", name = "selecter_basic" })
+                                @Html.DropDownListFor(model => model.ProjectId, null, htmlAttributes: new { @class = "caption selecter_1", name = "selecter_basic" })
                             </div>
                         </div>
 

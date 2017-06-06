@@ -1,63 +1,44 @@
 ﻿@model IEnumerable<CCO_Urenregistratie.Models.Tasks>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 @PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Tasks())
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Project.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Startdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Enddate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Project.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Startdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Enddate)
-        </td>
-        <td>
-            <button type="submit" id="edit" name="edit" class="btn btn-cco btn-margin">
-                <span class="fa fa-sign-in"></span>
-                edit
-            </button>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-        @PartialExtensions.Partial(Html, "Edit",item)
-    </tr>
-}
-
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-24">
+            <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
+                <div class="panel panel-cco">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Taken</h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Startdate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Enddate)
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-cco" type="button" data-toggle="modal" data-target="#@item.Id">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                        @PartialExtensions.Partial(Html, "Edit", item)
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

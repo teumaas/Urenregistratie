@@ -21,7 +21,6 @@ namespace CCO_Urenregistratie.Models
         public string UserId { get; private set; }
         public int ProjectId { get; set; }
 
-        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public DateTime Startdate { get; set; }
         public DateTime Enddate { get; set; }

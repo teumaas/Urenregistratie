@@ -15,6 +15,15 @@ body {
   position: relative;
 }
 
+.modal-backdrop {
+   z-index: 0;
+}
+
+.modal {
+   padding-top: 100px;
+}
+
+
 .logo {
   display: block;
   text-indent: -9999px;

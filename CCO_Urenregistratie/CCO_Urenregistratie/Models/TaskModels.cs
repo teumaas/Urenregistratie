@@ -22,7 +22,10 @@ namespace CCO_Urenregistratie.Models
         public int ProjectId { get; set; }
 
         public string Description { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Startdate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Enddate { get; set; }
         public virtual Project Project { get; set; }
         [ForeignKey("UserId")]

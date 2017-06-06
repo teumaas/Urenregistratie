@@ -16,7 +16,6 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Id)
                         @Html.HiddenFor(model => model.UserId)
-                        @Html.HiddenFor(model => model.ProjectId)
 
                         <div class="form-group">
                             <div class="input-group">
@@ -29,11 +28,10 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="info-cco input-group-addon"><i class="fa fa-users"></i></span>
-                                @Html.DropDownListFor(model => model.ProjectId, null, htmlAttributes: new { @class = "caption selecter_1", name = "selecter_basic" })
+                                @Html.DropDownListFor(model => model.ProjectId, Model.Project as IEnumerable<SelectListItem>, new { @class = "form-control form-cco"})
                             </div>
                         </div>
 
-                        @Html.HiddenFor(model => model.ProjectId)
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="info-cco input-group-addon"><i class="fa fa-hourglass-start"></i></span> 

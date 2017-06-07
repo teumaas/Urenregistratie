@@ -31,5 +31,18 @@ namespace CCO_Urenregistratie.Models
         {
             UserId = id;
         }
+        public double GetTotalTime()
+        {
+            if (Tasks == null)
+            {
+                return 0;
+            }
+            double totalHours = 0;
+            foreach (Tasks task in Tasks)
+            {
+                totalHours += task.GetHours();
+            }
+            return totalHours;
+        }
     }
 }

@@ -35,5 +35,12 @@ namespace CCO_Urenregistratie.Models
         {
             UserId = id;
         }
+
+        public double GetHours()
+        {
+            TimeSpan x = Enddate - Startdate;
+            return x.TotalHours;
+            
+        }
     }
 }

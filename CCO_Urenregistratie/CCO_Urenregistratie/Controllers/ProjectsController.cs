@@ -127,8 +127,27 @@ namespace CCO_Urenregistratie.Controllers
         }
         public ActionResult Dashboard()
         {
-            ViewBag.Projects = db.Projects;
-            ViewBag.Users = db.Users;
+            ViewBag.Projects = db.Projects.ToList();
+            ViewBag.Users = db.Users.ToList();
+
+            List<string> color = new List<string>();
+            List<string> name = new List<string>();
+            List<object> hours = new List<object>();
+            double totalHours = 0;
+
+            List<Project> x = db.Projects.ToList();
+            x.ForEach(z =>
+            {
+                color.Add("#"+ z.Color);
+                name.Add(z.Name);
+                hours.Add(z.GetTotalTime());
+                totalHours += z.GetTotalTime();
+
+            });
+            ViewBag.Colors = color;
+            ViewBag.Names = name;
+            ViewBag.Hours = hours;
+            ViewBag.TotalHours = totalHours;
             return View();
 
         }
@@ -141,30 +160,4 @@ namespace CCO_Urenregistratie.Controllers
             base.Dispose(disposing);
         }
     }
-    /*public class AuthorizeOwnerAttribute : AuthorizeAttribute
-    {
-
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            System.Web.Routing.RouteData rd = httpContext.Request.RequestContext.RouteData;
-
-            string id = rd.Values["id"].ToString();
-            string type = rd.Values["controller"].ToString();
-            string userId = httpContext.User.Identity.GetUserId();
-            ApplicationUser user = db.Users.Find(userId);//.FirstOrDefault(x => x.UserName == userName); 
-            object hasItem = null;
-
-            if (user != null)
-            {
-                if (type == "projects")
-                    hasItem = user.Projects.FirstOrDefault(x => x.Id.ToString() == id);
-
-                else if (type == "tasks")
-                    hasItem = user.Tasks.FirstOrDefault(x => x.Id.ToString() == id);
-            }
-            return hasItem != null | httpContext.User.IsInRole("Admin");
-        }
-    }*/
 }

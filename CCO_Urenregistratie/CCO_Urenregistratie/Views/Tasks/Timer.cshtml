@@ -1,0 +1,21 @@
+﻿@model CCO_Urenregistratie.Models.Tasks
+
+    <div class="col-sm-3" id="timerTask">
+        <h3 class="values header-value col-sm-3">00:00:00</h3>
+    </div>
+    <button type="button" name="play" value="play" class="btn btn-cco" role="button" id="play">
+        <span class="fa fa-play" /></button>
+    <button type="submit" name="stop" value="stop" class="btn btn-cco" role="button" id="stop">
+        <span class="fa fa-stop" />
+    </button>
+    <script>
+        var timer = new Timer();
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#timerTask .values').html(timer.getTimeValues().toString());
+        });
+        timer.addEventListener('started', function (e) {
+            $('#timerTask .values').html(timer.getTimeValues().toString());
+        });
+
+    </script>

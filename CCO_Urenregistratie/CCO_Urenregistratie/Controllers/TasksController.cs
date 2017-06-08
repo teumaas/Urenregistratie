@@ -22,6 +22,8 @@ namespace CCO_Urenregistratie.Controllers
             var tasks = db.Tasks.Include(t => t.Project).Include(t => t.User);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.Startdate = DateTime.Now;
+
             return View(tasks.ToList());
         }
 
@@ -41,10 +43,12 @@ namespace CCO_Urenregistratie.Controllers
         }
 
         // GET: Tasks/Create
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.Startdate = DateTime.Now;
             return View();
         }
 
@@ -58,6 +62,7 @@ namespace CCO_Urenregistratie.Controllers
             if (ModelState.IsValid)
             {
                 tasks.SetUserId(HttpContext.User.Identity.GetUserId());
+                tasks.Enddate = DateTime.Now;
                 db.Tasks.Add(tasks);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,7 +135,11 @@ namespace CCO_Urenregistratie.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public void Start()
+        {
+        }
 
+   
         protected override void Dispose(bool disposing)
         {
             if (disposing)

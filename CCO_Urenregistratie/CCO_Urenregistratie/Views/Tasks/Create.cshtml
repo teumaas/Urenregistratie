@@ -3,13 +3,15 @@
 @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new { role = "form" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model => model.Enddate)
+    @Html.HiddenFor(model => model.Startdate)
     <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
         <div class="panel panel-cco">
             <div class="panel-heading expand-bar">
-                <div id="timerTask" class="col-sm-6 pull-left">
-                    <h3 class="values header-value">00:00:00</h3>
+                <div class="col-sm-6 pull-left">
+                    @PartialExtensions.Partial(Html, "Timer")
                 </div>
+               
                 <div class="col-sm-1 text-right">
                     <span class="fa fa-2x fa-folder-open"></span>
                 </div>
@@ -30,41 +32,30 @@
                             </span>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Startdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Enddate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Enddate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Enddate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
 
 <script>
-    var timer = new Timer();
+    $("#play").click(function (e) {
 
-    timer.start();
+        e.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: "/Tasks/Start",
+            success: function (data) {
+                timer.start();
+                document.getElementById('Startdate').value = @Html.Raw("\"" + DateTime.Now + "\"");
+            }
 
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('#timerTask .values').html(timer.getTimeValues().toString());
-    });
-    timer.addEventListener('started', function (e) {
-        $('#timerTask .values').html(timer.getTimeValues().toString());
+        });
+
     });
 </script>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

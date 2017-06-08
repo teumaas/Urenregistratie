@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CCO_Urenregistratie.Models.Tasks>
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<CCO_Urenregistratie.Models.Tasks>
 
 @PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Tasks())
 
@@ -25,13 +26,20 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Enddate)
                                         </td>
+                                        
                                         <td>
+                                            @if(User.IsInRole("Admin") || item.UserId == User.Identity.GetUserId())
+                                            { 
                                             <button class="btn btn-cco" type="button" data-toggle="modal" data-target="#@item.Id">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            }
                                         </td>
+                                        @if(User.IsInRole("Admin") || item.UserId == User.Identity.GetUserId())
+                                        {
                                         @PartialExtensions.Partial(Html, "Edit", item)
+                                        }
                                     </tr>
                                 }
                             </tbody>

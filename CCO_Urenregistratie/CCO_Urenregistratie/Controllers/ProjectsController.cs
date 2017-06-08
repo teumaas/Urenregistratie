@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CCO_Urenregistratie.Models;
 using Microsoft.AspNet.Identity;
+using System.Drawing;
 
 namespace CCO_Urenregistratie.Controllers
 {
@@ -53,9 +54,13 @@ namespace CCO_Urenregistratie.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,Description,Color,Name")] Project project)
         {
+            Random rnd = new Random();
+            Color rndColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+         
             if (ModelState.IsValid)
             {
                 project.SetUserId(HttpContext.User.Identity.GetUserId());
+                project.Color = rndColor.Name.Substring(2);
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");

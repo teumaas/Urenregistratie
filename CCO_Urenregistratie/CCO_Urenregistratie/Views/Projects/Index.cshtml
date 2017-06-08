@@ -1,4 +1,5 @@
 ﻿@using CCO_Urenregistratie.Helpers
+@using Microsoft.AspNet.Identity;
 @model IEnumerable<CCO_Urenregistratie.Models.Project>
 
 @{
@@ -22,10 +23,14 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                     
                                     <td>
+                                        @if (User.IsInRole("Admin") || item.UserId == User.Identity.GetUserId())
+                                        {
                                         <div class="btn-group">
                                             @Html.IconActionLink("fa fa-edit", "", "Edit", "Projects", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-cco" })
                                         </div>
+                                        }
                                     </td>
                                 </tr>
                             }

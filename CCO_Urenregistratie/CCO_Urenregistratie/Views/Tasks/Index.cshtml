@@ -18,11 +18,21 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Description)
                                         </td>
+
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Startdate)
                                         </td>
+
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Enddate)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Project.Name)
+                                        </td>
+
+                                        <td>
+                                            @item.GetHours() uur
                                         </td>
                                         
                                         <td>

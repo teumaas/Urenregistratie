@@ -33,7 +33,7 @@ namespace CCO_Urenregistratie.Models
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Onthoud deze browser")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,7 +42,7 @@ namespace CCO_Urenregistratie.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 
@@ -58,7 +58,7 @@ namespace CCO_Urenregistratie.Models
         [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Ingelogd blijven?")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,7 +66,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
@@ -97,7 +97,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
@@ -118,7 +118,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 }

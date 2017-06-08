@@ -1,22 +1,31 @@
 ﻿@model CCO_Urenregistratie.Models.Project
 
-<div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="editProject">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="panel panel-cco">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Verwijderen<span class="fa fa-close pull-right" data-dismiss="modal" aria-hidden="true" /></h2>
-                </div>
-                <div class="panel-body">
+@{
+    ViewBag.Title = "Delete";
+}
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" value="Delete" class="btn btn-cco fa fa-floppy-o" />
-                    }
+@using (Html.BeginForm("Delete", "Projects", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.Id)
+    <div class="modal fade" id="#@Html.DisplayFor(model => model.Id)+" tabindex="-1" role="dialog" aria-labelledby="#@Html.DisplayFor(model => model.Id)+">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="panel panel-cco">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">@Html.DisplayFor(model => model.Name) - Verwijderen<span class="fa fa-close pull-right" data-dismiss="modal" aria-hidden="true" /></h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-center">
+                            Weet je zeker dat je dit project wilt verwijderen?
+                        </div>
+                        <button type="submit" class="btn btn-cco" role="button">
+                            <span class="fa fa-trash-o"></span> Verwijderen
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}

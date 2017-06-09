@@ -19,13 +19,19 @@ namespace CCO_Urenregistratie.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
-            var tasks = user.Tasks;
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             ViewBag.Startdate = DateTime.Now;
 
-            return View(tasks.ToList());
+            if (User.IsInRole("Admin"))
+            {
+                return View( db.Tasks.Include(t => t.Project).Include(t => t.User).ToList());
+            }
+            else
+            {
+                ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
+                return View(user.Tasks.ToList());
+            }
         }
 
         // GET: Tasks/Details/5

@@ -19,7 +19,8 @@ namespace CCO_Urenregistratie.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            var tasks = db.Tasks.Include(t => t.Project).Include(t => t.User);
+            ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
+            var tasks = user.Tasks;
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             ViewBag.Startdate = DateTime.Now;

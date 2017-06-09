@@ -449,7 +449,7 @@ namespace CCO_Urenregistratie.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Tasks");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -44,5 +44,26 @@ namespace CCO_Urenregistratie.Models
             }
             return totalHours;
         }
+
+        public string GetHoursConverted()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetTotalTime());
+            string fromTimeString = result.ToString("hh':'mm':'ss");
+            return fromTimeString;
+        }
+
+        public string GetHoursForChart()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetTotalTime());
+            string fromTimeString = result.ToString("hh'.'mm");
+            return fromTimeString;
+        }
+
+        public string GetHoursForChartText()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetTotalTime());
+            string fromTimeString = result.ToString("hh':'mm");
+            return fromTimeString;
+        }
     }
 }

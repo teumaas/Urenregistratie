@@ -41,5 +41,26 @@ namespace CCO_Urenregistratie.Models
             TimeSpan x = Enddate - Startdate;
             return x.TotalHours;
         }
+
+        public string GetHoursConverted()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetHours());
+            string fromTimeString = result.ToString("hh':'mm':'ss");
+            return fromTimeString;
+        }
+
+        public string GetHoursForChart()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetHours());
+            string fromTimeString = result.ToString("hh'.'mm");
+            return fromTimeString;
+        }
+
+        public string GetHoursForChartText()
+        {
+            TimeSpan result = TimeSpan.FromHours(GetHours());
+            string fromTimeString = result.ToString("hh':'mm");
+            return fromTimeString;
+        }
     }
 }

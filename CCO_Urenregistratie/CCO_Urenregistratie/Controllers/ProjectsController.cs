@@ -145,14 +145,18 @@ namespace CCO_Urenregistratie.Controllers
             {
                 color.Add("#"+ z.Color);
                 name.Add(z.Name);
-                hours.Add(z.GetTotalTime());
+                hours.Add(z.GetHoursForChart());
                 totalHours += z.GetTotalTime();
 
             });
             ViewBag.Colors = color;
             ViewBag.Names = name;
             ViewBag.Hours = hours;
-            ViewBag.TotalHours = totalHours;
+
+            TimeSpan result = TimeSpan.FromHours(totalHours);
+            string fromTimeString = result.ToString("hh':'mm");
+
+            ViewBag.TotalHours = fromTimeString;
             return View();
 
         }

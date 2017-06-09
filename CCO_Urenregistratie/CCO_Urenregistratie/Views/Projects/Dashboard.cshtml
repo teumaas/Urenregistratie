@@ -17,10 +17,16 @@
                                     <li class="list-group-item">
                                         @item.Name:
                                         <span class="badge" style="background-color: #@item.Color; border-color: #@item.Color;">
-                                          @item.GetTotalTime() uur
+                                          @item.GetHoursConverted() uur
                                         </span>
                                     </li>
                                 }
+                                <li class="list-group-item">
+                                    <b>Totaal aantal uren:</b>
+                                    <span class="badge badge-default">
+                                        @ViewBag.TotalHours uur
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-6">
@@ -61,11 +67,6 @@
             ctx.font = fontSize + "em sans-serif";
             ctx.textBaseline = "middle";
 
-            var text = "@ViewBag.TotalHours uur",
-                textX = Math.round((width - ctx.measureText(text).width) / 2),
-                textY = height / 2;
-
-            ctx.fillText(text, textX, textY);
             ctx.save();
         }
     });

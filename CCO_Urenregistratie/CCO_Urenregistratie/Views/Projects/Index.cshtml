@@ -5,7 +5,11 @@
 @{
     ViewBag.Title = "Index";
 }
-@PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Project())
+@if (User.IsInRole("Admin"))
+{
+    @PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Project())
+}
+
         <div class="col-sm-offset-2 col-sm-8 box animated fadeIn">
             <div class="panel panel-cco">
                 <div class="panel-heading">

@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity;
 @model IEnumerable<CCO_Urenregistratie.Models.Tasks>
 
+@{
+    ViewBag.Title = "Timer";
+}
+
 @PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Tasks())
 
 

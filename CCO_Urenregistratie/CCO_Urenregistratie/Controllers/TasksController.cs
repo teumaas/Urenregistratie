@@ -142,6 +142,7 @@ namespace CCO_Urenregistratie.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //Method that is called to start the timer without it. It won't work
         public void Start()
         {
         }

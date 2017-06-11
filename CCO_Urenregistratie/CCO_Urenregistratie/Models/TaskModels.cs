@@ -10,9 +10,6 @@ using System.Web;
 
 namespace CCO_Urenregistratie.Models
 {
-    public class TaskModels
-    {
-    }
     [Table("Tasks")]
     public class Tasks
     {
@@ -27,10 +24,13 @@ namespace CCO_Urenregistratie.Models
 
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime Enddate { get; set; }
+        //the project of the task
         public virtual Project Project { get; set; }
+        //the user of the task
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
+        //sets the userid of the task
         public void SetUserId(string id)
         {
             UserId = id;
@@ -46,20 +46,6 @@ namespace CCO_Urenregistratie.Models
         {
             TimeSpan result = TimeSpan.FromHours(GetHours());
             string fromTimeString = result.ToString("hh':'mm':'ss");
-            return fromTimeString;
-        }
-
-        public string GetHoursForChart()
-        {
-            TimeSpan result = TimeSpan.FromHours(GetHours());
-            string fromTimeString = result.ToString("hh'.'mm");
-            return fromTimeString;
-        }
-
-        public string GetHoursForChartText()
-        {
-            TimeSpan result = TimeSpan.FromHours(GetHours());
-            string fromTimeString = result.ToString("hh':'mm");
             return fromTimeString;
         }
     }

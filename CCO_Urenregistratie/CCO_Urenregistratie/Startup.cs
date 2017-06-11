@@ -22,16 +22,16 @@ namespace CCO_Urenregistratie
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            // In Startup iam creating first Admin Role and creating a default Admin User    
+            // checks of the admin role is created if not it will create one and creates a admin account   
             if (!roleManager.RoleExists("Admin"))
             {
 
-                // first we create Admin rool   
+                // creating admin role   
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
-                //Here we create a Admin super user who will maintain the website                  
+                //creating the admin account                
 
                 var user = new ApplicationUser();
                 user.UserName = "admin";
@@ -43,21 +43,12 @@ namespace CCO_Urenregistratie
 
                 var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
+                //checks of the user is correctly created and adds it to the role 
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
 
                 }
-            }
-
-            // creating Creating Employee role    
-            if (!roleManager.RoleExists("user"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "User";
-                roleManager.Create(role);
-
             }
         }
     }

@@ -130,6 +130,7 @@ namespace CCO_Urenregistratie.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        // Get: Project/dashboard
         public ActionResult Dashboard()
         {
             ViewBag.Projects = db.Projects.ToList();

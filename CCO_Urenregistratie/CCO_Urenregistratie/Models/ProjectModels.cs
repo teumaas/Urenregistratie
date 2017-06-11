@@ -10,9 +10,6 @@ using System.Web;
 
 namespace CCO_Urenregistratie.Models
 {
-    public class ProjectModels
-    {
-    }
     [Table("Project")]
     public class Project
     {
@@ -24,14 +21,18 @@ namespace CCO_Urenregistratie.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public string Color { get; set; }
+        //list of all tasks of the project
         public virtual ICollection<Tasks> Tasks { get; set; }
+        //user of the project
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
+        //sets the userid of the project
         public void SetUserId(string id)
         {
             UserId = id;
         }
+        //gets the total time spend on the project
         public double GetTotalTime()
         {
             if (Tasks == null)
@@ -45,14 +46,14 @@ namespace CCO_Urenregistratie.Models
             }
             return totalHours;
         }
-
+        //gets the total time of the project formatted in 'hh:mm:ss'
         public string GetHoursConverted()
         {
             TimeSpan result = TimeSpan.FromHours(GetTotalTime());
             string fromTimeString = result.ToString("hh':'mm':'ss");
             return fromTimeString;
         }
-
+        //get the totaltime of the project formatted in 'hh.mm'
         public string GetHoursForChart()
         {
             TimeSpan result = TimeSpan.FromHours(GetTotalTime());
@@ -60,6 +61,7 @@ namespace CCO_Urenregistratie.Models
             return fromTimeString;
         }
 
+        //gets the totaltime of tasks of the project formatted in 'hh:mm'
         public string GetHoursForChartText()
         {
             TimeSpan result = TimeSpan.FromHours(GetTotalTime());

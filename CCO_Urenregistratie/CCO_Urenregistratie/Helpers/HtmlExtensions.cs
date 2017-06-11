@@ -27,6 +27,11 @@ namespace CCO_Urenregistratie.Helpers
             return new MvcHtmlString(link.Replace("[replaceme]", builder.ToString()));
         }
 
+        /// <summary>
+        /// get the username form the db. created with the frontname and last name.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static string GetUserName(string id)
         {
             ApplicationDbContext db = new ApplicationDbContext();

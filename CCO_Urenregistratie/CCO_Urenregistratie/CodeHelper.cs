@@ -8,10 +8,9 @@ using Microsoft.AspNet.Identity;
 
 namespace CCO_Urenregistratie
 {
-    public class CodeHelper
-    {
-    }
-
+    /// <summary>
+    /// atribute for authentication for owner of the project or task.
+    /// </summary>
     public class AuthorizeOwnerAttribute : AuthorizeAttribute
     {
 

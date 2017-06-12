@@ -38,8 +38,8 @@ namespace CCO_Urenregistratie.Models
 
         public double GetHours()
         {
-            TimeSpan x = Enddate - Startdate;
-            return x.TotalHours;
+            TimeSpan time = Enddate - Startdate;
+            return time.TotalHours;
         }
 
         public string GetHoursConverted()

@@ -141,13 +141,13 @@ namespace CCO_Urenregistratie.Controllers
             List<object> hours = new List<object>();
             double totalHours = 0;
 
-            List<Project> x = db.Projects.ToList();
-            x.ForEach(z =>
+            List<Project> projects = db.Projects.ToList();
+            projects.ForEach(project =>
             {
-                color.Add("#"+ z.Color);
-                name.Add(z.Name);
-                hours.Add(z.GetHoursForChart());
-                totalHours += z.GetTotalTime();
+                color.Add("#"+ project.Color);
+                name.Add(project.Name);
+                hours.Add(project.GetHoursForChart());
+                totalHours += project.GetTotalTime();
 
             });
             ViewBag.Colors = color;

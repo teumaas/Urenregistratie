@@ -9,7 +9,9 @@ namespace CCO_Urenregistratie.Migrations
     {
         public Configuration()
         {
+            //added those for easier updates to the database.
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "CCO_Urenregistratie.Models.ApplicationDbContext";
         }
 

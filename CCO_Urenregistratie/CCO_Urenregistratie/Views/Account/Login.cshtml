@@ -1,63 +1,108 @@
-﻿@using CCO_Urenregistratie.Models
+﻿@using CCO_Urenregistratie.Helpers
+@using CCO_Urenregistratie.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Inloggen";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
+{
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <div class="row">
+        <div class="col-sm-24">
+            <div class="col-sm-offset-2 col-sm-8 box animated zoomInRight">
+
+                @Html.AntiForgeryToken()
+                <div class="panel panel-cco">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Urenregistratie - Login</h3>
+                    </div>
+
+                    <div class="panel-body">
+                            <div class="col-sm-12">
+                                <div class="center-block logo-big"></div>
+                            </div>
+
+                            <div class="col-sm-12">
+                              
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="info-cco input-group-addon"><i class="fa fa-user"></i></span>
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = " form-cco form-control ", @placeholder = Html.DisplayNameFor(m => m.UserName)})
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger", @hidden="true", @id="1"})
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="info-cco input-group-addon"><i class="fa fa-lock"></i></span>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-cco", @placeholder = Html.DisplayNameFor(m => m.Password)})
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @hidden = "true", @id = "2" })
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-spacing">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe, htmlAttributes: new { @class = "remember-me"  })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <button type="submit" id="submit" name="submit" class="btn btn-cco btn-margin">
+                                    <span class="fa fa-sign-in"></span>
+                                    Inloggen
+                                </button>
+                                
+                                @Html.IconActionLink("fa fa-user-plus", "Registeren", "Register", "Account", null, htmlAttributes: new { @class = "btn btn-cco btn-margin", @role = "button" })
+
+                                @Html.IconActionLink("fa fa-question-circle", "Wachtwoord vergeten", "ForgotPassword", "Account", null, htmlAttributes: new { @class = "btn btn-cco btn-margin", @role = "button" })
+                            </div>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $(submit).ready(function(){
+                            $(submit).click(function(){
+
+                                var errors= [];
+                                if($("#1").hasClass("field-validation-error") )
+                                {
+                                    errors[0] = $("#1").children("span").text();
+                                }
+                                if ($("#2").hasClass("field-validation-error")) {
+                                    errors[1] = $("#2").children("span").text();
+                                }
+                                if($("#1").hasClass("field-validation-error") || $("#2").hasClass("field-validation-error"))
+                                {
+                                    if ($("#1").hasClass("field-validation-error") && $("#2").hasClass("field-validation-error")) {
+                                        toastr.error(errors[0] + "<br>" + errors[1]);
+                                    }
+                                    else {
+                                        toastr.error(errors[0] !=null? errors[0] : errors[1] );
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <script type="text/javascript">
+                    $(document).ready(function() {
+                        var errors = @Html.Raw(Json.Encode(string.Join("<br>",
+                    ViewData.ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(error => error.ErrorMessage))));
+                        toastr.error(errors).css("font-size", "15px");
+                    });
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
 }

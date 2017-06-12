@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<CCO_Urenregistratie.Models.Tasks>
+
+@{
+    ViewBag.Title = "Timer";
+}
+
+@PartialExtensions.Partial(Html, "Create", new CCO_Urenregistratie.Models.Tasks())
+
+
+            <div class="col-sm-offset-1 col-sm-10 box animated fadeIn">
+                <div class="panel panel-cco">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Taken</h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Taak</th>
+                                    <th>Starttijd</th>
+                                    <th>Eindtijd</th>
+                                    <th>Project naam</th>
+                                    <th>Aantal uur gewerkt</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Startdate)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Enddate)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Project.Name)
+                                        </td>
+
+                                        <td>
+                                            @item.GetHoursConverted() uur
+                                        </td>
+                                        
+                                        <td>
+                                            @if (User.IsInRole("Admin") || item.UserId == User.Identity.GetUserId())
+                                            {
+                                                <div class="btn-group  pull-right">
+                                                    <button class="btn btn-cco" type="button" data-toggle="modal" data-target="#@item.Id">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-cco" type="button" data-toggle="modal" data-target="#@item.Id+">
+                                                        <i class="fa fa-close"></i>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </td>
+                                        @if(User.IsInRole("Admin") || item.UserId == User.Identity.GetUserId())
+                                        {
+                                        @PartialExtensions.Partial(Html, "Edit", item)
+                                        @PartialExtensions.Partial(Html, "Delete", item)
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>

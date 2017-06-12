@@ -1,44 +1,71 @@
-﻿<!DOCTYPE html>
+﻿@using CCO_Urenregistratie.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Urenregistratie</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/icheck")
+    @Scripts.Render("~/bundles/chart")
+    @Scripts.Render("~/bundles/selector")
+    @Scripts.Render("~/bundles/sweetalert2")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/menuchef")
+    @Scripts.Render("~/bundles/easytimer")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    @if (Request.IsAuthenticated)
+    {
+    <nav class="Header-menu js-Menu">
+        @Html.IconActionLink("fa fa-clock-o", "Timer", "Index", "Tasks", routeValues: null, htmlAttributes: new { @class = "Header-menu-link class-foo class-ba" })
+        @Html.IconActionLink("fa fa-bar-chart", "Dashboard", "Dashboard", "Projects", routeValues: null, htmlAttributes: new { @class = "Header-menu-link class-foo class-ba" })
+        @Html.IconActionLink("fa fa-folder-open-o ", "Projects", "Index", "Projects", routeValues: null, htmlAttributes: new { @class = "Header-menu-link class-foo class-ba" })
+        <a class="Header-menu-link class-foo class-ba" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Uitloggen</a>
+    </nav>
+
+    <nav class="navbar navbar-fixed-top navbar-cco animated fadeIn" role="navigation">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <span class="navbar-brand logo"></span>
+                @Html.ActionLink("Professionele ICT diensten", "Index", "Tasks", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="btn btn-cco navbar-brand collapse-btn" onclick="MenuChef.toggle(this)"><span class="fa fa-2x fa-bars" /></button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div id="bs-example-navbar-collapse-3" class="collapse navbar-collapse">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    }
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">© @DateTime.Now.Year CCO Automatisering All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
     @RenderSection("scripts", required: false)
+
+    <script>
+    new MenuChef('.js-Menu a', {
+      theme: {
+        theme: 'side',
+        direction: 'left',
+        effectOnOpen: 'smooth',
+      },
+      classes: {
+        only: ['class-foo']
+      },
+
+      hamburger: ''
+    });
+    </script>
 </body>
 </html>

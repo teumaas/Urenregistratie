@@ -1,0 +1,16 @@
+﻿@model CCO_Urenregistratie.Models.Tasks
+
+    <div class="col-sm-3" id="timerTask">
+        <h3 class="values header-value col-sm-3">00:00:00</h3>
+    </div>
+    <script>
+        var timer = new Timer();
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#timerTask .values').html(timer.getTimeValues().toString());
+        });
+        timer.addEventListener('started', function (e) {
+            $('#timerTask .values').html(timer.getTimeValues().toString());
+        });
+
+    </script>

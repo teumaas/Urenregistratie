@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace CCO_Urenregistratie.Models
 {
@@ -16,6 +17,11 @@ namespace CCO_Urenregistratie.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public virtual ICollection<Tasks> Tasks { get; private set; }
+        public virtual ICollection<Project> Projects { get; private set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -31,6 +37,5 @@ namespace CCO_Urenregistratie.Models
         }
         public System.Data.Entity.DbSet<CCO_Urenregistratie.Models.Tasks> Tasks { get; set; }
         public System.Data.Entity.DbSet<CCO_Urenregistratie.Models.Project> Projects { get; set; }
-
     }
 }

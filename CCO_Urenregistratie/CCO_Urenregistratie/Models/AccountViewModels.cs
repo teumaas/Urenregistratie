@@ -33,7 +33,7 @@ namespace CCO_Urenregistratie.Models
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Onthoud deze browser")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,23 +42,23 @@ namespace CCO_Urenregistratie.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Required(ErrorMessage="Vul uw gebruiksnaam in.")]
+        [Display(Name = "Gebruikersnaam")]
+        
+        public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Vul uw wachtwoord in.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Ingelogd blijven?")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,8 +66,20 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name="Voornaam")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Achternaam")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Gebruikersnaam")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -85,7 +97,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
@@ -106,7 +118,7 @@ namespace CCO_Urenregistratie.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 }

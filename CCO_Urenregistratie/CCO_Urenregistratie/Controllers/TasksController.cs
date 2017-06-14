@@ -68,10 +68,6 @@ namespace CCO_Urenregistratie.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (tasks.Startdate <= DateTime.Now.Date)
-                {
-                    tasks.Startdate = DateTime.Now;
-                }
                 tasks.SetUserId(HttpContext.User.Identity.GetUserId());
                 tasks.Enddate = DateTime.Now;
                 db.Tasks.Add(tasks);

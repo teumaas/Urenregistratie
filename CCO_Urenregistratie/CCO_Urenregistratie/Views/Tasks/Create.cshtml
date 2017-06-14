@@ -53,7 +53,7 @@
             url: "/Tasks/Start",
             success: function (data) {
                 timer.start();
-                document.getElementById('Startdate').value = @Html.Raw("\"" + DateTime.Now + "\"");
+                document.getElementById('Startdate').value = data
             }
 
         });
@@ -62,7 +62,7 @@
 </script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $("#stop").ready(function(){
+        $("#stop").ready(function () {
             $("#stop").click();
             $("#stop").click(function(){
                 if($("#1").hasClass("field-validation-error") )

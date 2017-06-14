@@ -66,8 +66,16 @@ namespace CCO_Urenregistratie.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,ProjectId,Description,Startdate,Enddate")] Tasks tasks)
         {
-            if (ModelState.IsValid)
+            if (tasks.ProjectId == 0)
             {
+                ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", tasks.ProjectId);
+                ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", tasks.UserId);
+                return View(tasks);
+            }
+            else if (ModelState.IsValid)
+            {
+                if (tasks.Startdate.Year == 1)
+                    tasks.Startdate = DateTime.Now;
                 tasks.SetUserId(HttpContext.User.Identity.GetUserId());
                 tasks.Enddate = DateTime.Now;
                 db.Tasks.Add(tasks);
@@ -78,6 +86,7 @@ namespace CCO_Urenregistratie.Controllers
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", tasks.ProjectId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", tasks.UserId);
             return View(tasks);
+            
         }
 
         // GET: Tasks/Edit/5
@@ -143,8 +152,9 @@ namespace CCO_Urenregistratie.Controllers
             return RedirectToAction("Index");
         }
         //Method that is called to start the timer without it. It won't work
-        public void Start()
+        public string Start()
         {
+            return DateTime.Now.ToString().Replace("/", "-");
         }
 
    

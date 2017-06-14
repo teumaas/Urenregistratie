@@ -17,7 +17,7 @@ namespace CCO_Urenregistratie.Models
         public int Id { get; set; }
         public string UserId { get; set; }
         public int ProjectId { get; set; }
-        [Required]
+        [Required(ErrorMessage="Er moet een beschrijving worden ingevuld")]
         public string Description { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime Startdate { get; set; }

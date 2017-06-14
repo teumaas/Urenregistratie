@@ -16,7 +16,7 @@ namespace CCO_Urenregistratie.Models
         [Key]
         public int Id { get; set; }
         public string UserId { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings= false, ErrorMessage="Er moet een projectnaam worden ingevuld")]
         public string Name { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

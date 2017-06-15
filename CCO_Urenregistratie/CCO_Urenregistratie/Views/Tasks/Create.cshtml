@@ -5,6 +5,7 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Enddate)
     @Html.HiddenFor(model => model.Startdate)
+    @Html.HiddenFor(model => model.ProjectId)
     <div class="col-sm-offset-1 col-sm-10 box animated fadeIn">
         <div class="panel panel-cco">
             <div class="panel-heading expand-bar">
@@ -17,6 +18,7 @@
                 </div>
                 <div class="col-sm-5 pull-right panel-dropdown">
                     @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control form-cco" })
+                    @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger", @hidden = "true", @id = "2" })
                 </div>
 
             </div>
@@ -65,9 +67,20 @@
         $("#stop").ready(function () {
             $("#stop").click();
             $("#stop").click(function(){
-                if($("#1").hasClass("field-validation-error") )
-                {
-                    toastr.error($("#1").children("span").text());
+                var errors = [];
+                if ($("#1").hasClass("field-validation-error")) {
+                    errors[0] = $("#1").children("span").text();
+                }
+                if ($("#2").hasClass("field-validation-error")) {
+                    errors[1] = $("#2").children("span").text();
+                }
+                if ($("#1").hasClass("field-validation-error") || $("#2").hasClass("field-validation-error")) {
+                    if ($("#1").hasClass("field-validation-error") && $("#2").hasClass("field-validation-error")) {
+                        toastr.error(errors[0] + "<br>" + errors[1]);
+                    }
+                    else {
+                        toastr.error(errors[0] != null ? errors[0] : errors[1]);
+                    }
                 }
             });
         });

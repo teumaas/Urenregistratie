@@ -16,6 +16,7 @@ namespace CCO_Urenregistratie.Models
         [Key]
         public int Id { get; set; }
         public string UserId { get; set; }
+        [Required(ErrorMessage="Er moet een project geselecteerd worden")]
         public int ProjectId { get; set; }
         [Required(ErrorMessage="Er moet een beschrijving worden ingevuld")]
         public string Description { get; set; }
